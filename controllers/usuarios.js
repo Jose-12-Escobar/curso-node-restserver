@@ -1,56 +1,60 @@
 const { response, request } = require('express');
 
-const usuariosGet = (req, res) => {
 
-    const query = req.query;
+const usuariosGet = (req = request, res = response) => {
+
+    const { q, nombre = 'No name', apikey, page = 1, limit } = req.query;
 
     res.json({
-        msg: 'get API - cotrolador',
-        query
+        msg: 'get API - controlador',
+        q,
+        nombre,
+        apikey,
+        page, 
+        limit
     });
 }
 
-const usuariosPost = (req = request, res = response) => {
+const usuariosPost = (req, res = response) => {
 
-    const body = req.body;
+    const { nombre, edad } = req.body;
 
     res.json({
-        msg: 'post API - cotrolador',
-        body
+        msg: 'post API - usuariosPost',
+        nombre, 
+        edad
     });
 }
 
+const usuariosPut = (req, res = response) => {
 
-const usuariosPut = (req = request, res = response) => {
-
-    const id = req.params.id;
+    const { id } = req.params;
 
     res.json({
-        msg: 'put API - cotrolador',
+        msg: 'put API - usuariosPut',
         id
     });
-
 }
 
-const usuariosPatch = (req = request, res = response) => {
-
+const usuariosPatch = (req, res = response) => {
     res.json({
-        msg: 'patch API - cotrolador'
+        msg: 'patch API - usuariosPatch'
     });
-
 }
 
-const usuariosDelete = (req = request, res = response) => {
-
+const usuariosDelete = (req, res = response) => {
     res.json({
-        msg: 'delete API - cotrolador'
+        msg: 'delete API - usuariosDelete'
     });
-
 }
+
+
+
+
 module.exports = {
     usuariosGet,
     usuariosPost,
     usuariosPut,
     usuariosPatch,
-    usuariosDelete
+    usuariosDelete,
 }
